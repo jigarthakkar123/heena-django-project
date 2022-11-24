@@ -1,0 +1,54 @@
+{% extends 'seller_header.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+
+<head>
+</head>
+
+<body>
+  <div class="hero_area">
+    <!-- header section strats -->
+    <div class="brand_box">
+      <a class="navbar-brand" href="index.html">
+        <span>
+          Ninom
+        </span>
+      </a>
+    </div>
+    <!-- end header section -->
+    
+  <!-- shop section -->
+
+  
+  <section class="fruit_section layout_padding">
+    <h2 align="center" style="color:blue;">My Fruits</h2>
+    <div class="container-fluid">
+
+      <div class="fruit_container">
+        {% for i in products %}
+        <div class="box">
+          <img src="{{i.product_image.url}}" alt="">
+          <div class="link_box">
+            <h5>
+              {{i.product_name}}
+            </h5>
+            <a href="{% url 'seller_product_detail' pk=i.pk %}">
+             Details
+            </a>
+          </div>
+        </div>
+        {% endfor %}
+    </div>
+  </section>
+
+  <!-- end fruit section -->
+
+
+ 
+ 
+</body>
+
+</html>
+{% endblock %}

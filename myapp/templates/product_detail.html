@@ -1,0 +1,79 @@
+{% extends 'header.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+
+<head>
+</head>
+
+<body>
+  <div class="hero_area">
+    <!-- header section strats -->
+    <div class="brand_box">
+      <a class="navbar-brand" href="index.html">
+        <span>
+          Ninom
+        </span>
+      </a>
+    </div>
+    <!-- end header section -->
+    
+  <!-- shop section -->
+
+  
+  <section class="fruit_section layout_padding">
+    <h2 align="center" style="color:blue;">My Fruits</h2>
+      {% if msg %}
+        <b style="color:blue" align="Center">{{msg}}</b>
+      {% endif %}
+    <div class="container-fluid">
+      
+      <div class="fruit_container">
+        
+        <div class="box">
+          <img src="{{product.product_image.url}}" alt="">
+          <div>
+            <h5>
+              Name : {{product.product_name}}
+            </h5>
+            <h5>
+              Price : {{product.product_price}}
+            </h5>
+            <h5>
+              Description : {{product.product_desc}}
+            </h5>
+            <h5>
+              Quantity : {{product.product_qty}}
+            </h5>
+          </div>
+          {% if request.session.email %}
+            {% if cart_flag %}
+              <a href="{% url 'remove_from_cart' pk=product.pk %}"><input type="button" value="Remove From Cart"  class="btn btn-danger"></a>
+            {% else %}
+              <a href="{% url 'add_to_cart' pk=product.pk %}"><input type="button" value="Add To Cart"  class="btn btn-primary"></a>
+            {% endif %}
+            {% if wishlist_flag %}
+              <a href="{% url 'remove_from_wishlist' pk=product.pk %}"><input type="button" value="Remove From Wishlist"  class="btn btn-danger"></a>
+            {% else %}
+              <a href="{% url 'add_to_wishlist' pk=product.pk %}"><input type="button" value="Add To Wishlist"  class="btn btn-primary"></a>
+            {% endif %}
+            
+          {% else %}
+            <a href="{% url 'login' %}"><input type="button" value="Login For Detail" class="btn btn-primary"></a>
+          {% endif %}
+          
+        </div>
+       
+    </div>
+  </section>
+
+  <!-- end fruit section -->
+
+
+ 
+ 
+</body>
+
+</html>
+{% endblock %}

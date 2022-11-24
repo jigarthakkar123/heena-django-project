@@ -1,0 +1,65 @@
+{% extends 'seller_header.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+
+<head>
+</head>
+
+<body>
+  <div class="hero_area">
+    <!-- header section strats -->
+    <div class="brand_box">
+      <a class="navbar-brand" href="index.html">
+        <span>
+          Ninom
+        </span>
+      </a>
+    </div>
+    <!-- end header section -->
+    
+  <!-- shop section -->
+
+  
+  <section class="fruit_section layout_padding">
+    <h2 align="center" style="color:blue;">My Fruits</h2>
+      {% if msg %}
+        <b style="color:blue" align="Center">{{msg}}</b>
+      {% endif %}
+    <div class="container-fluid">
+      
+      <div class="fruit_container">
+        
+        <div class="box">
+          <img src="{{product.product_image.url}}" alt="">
+          <div>
+            <h5>
+              Name : {{product.product_name}}
+            </h5>
+            <h5>
+              Price : {{product.product_price}}
+            </h5>
+            <h5>
+              Description : {{product.product_desc}}
+            </h5>
+            <h5>
+              Quantity : {{product.product_qty}}
+            </h5>
+          </div>
+          <a href="{% url 'seller_product_edit' pk=product.pk %}"><input type="button" value="EDIT" class="btn btn-primary"></a>
+          <a href="{% url 'seller_product_delete' pk=product.pk %}"><input type="button" value="DELETE"  class="btn btn-danger"></a>
+        </div>
+       
+    </div>
+  </section>
+
+  <!-- end fruit section -->
+
+
+ 
+ 
+</body>
+
+</html>
+{% endblock %}
